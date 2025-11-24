@@ -72,13 +72,14 @@ netmon-mcp/
 ├── main.go                   # MCP server entry point
 ├── go.mod / go.sum           # Go dependencies
 │
-├── ebpf/
+└── ebpf/
     ├── netmon.c              # eBPF XDP program
     ├── netmon_bpfel.go       # Auto-generated BPF bindings
     ├── netmon_bpfel.o        # Compiled ELF object
     ├── netmon.go       # Go wrapper for eBPF loading & traffic monitoring
-    ├── include
-        ├── bpf_endian.h      # Libraries to simplify structs
+    │
+    └── include               # Libraries to simplify structs
+        ├── bpf_endian.h      
         ├── bpf_helper_defs.h
         ├── bpf_helpers.h
         ├── bpf_tracing.h
