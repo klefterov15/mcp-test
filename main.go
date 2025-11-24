@@ -26,18 +26,16 @@ func main() {
 		port = "8080"
 	}
 
-	calcTool := mcp.NewTool("calculate",
-		mcp.WithDescription("Perform arithmetic operations"),
-		mcp.WithString("arithmetic_operation",
+	netTool := mcp.NewTool("network-monitor",
+		mcp.WithDescription("Monitor network traffic."),
+		mcp.WithString("network_operation",
 			mcp.Required(),
-			mcp.Enum("add", "subtract", "multiply", "divide"),
-			mcp.Description("The arithmetic operation to perform"),
-		),
-		mcp.WithNumber("x", mcp.Required(), mcp.Description("First number")),
-		mcp.WithNumber("y", mcp.Required(), mcp.Description("Second number")),
+			mcp.Enum("incoming", "outgoing"),
+			mcp.Description("Network traffic to monitor.")
+		)
 	)
 
-	s.AddTool(calcTool, handleCalculate)
+	s.AddTool(netTool, handleNetworkTraffic)
 
 	// Start MCP Server via HTTP on port 8080 via localhost
 	switch transport {
@@ -63,37 +61,18 @@ func main() {
 
 }
 
-func handleCalculate(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
+func handleNetworkTraffic(ctx context.Context, req mcp.CallToolRequest) (*mcp.CallToolResult, error) {
 	// Extract parameters using helper methods
-	operation, err := req.RequireString("arithmetic_operation")
+	operation, err := req.RequireString("network_operation")
 	if err != nil {
 		return mcp.NewToolResultError(err.Error()), nil
 	}
 
-	x, err := req.RequireFloat("x")
-	if err != nil {
-		return mcp.NewToolResultError(err.Error()), nil
-	}
-
-	y, err := req.RequireFloat("y")
-	if err != nil {
-		return mcp.NewToolResultError(err.Error()), nil
-	}
-
-	// Perform calculation
-	var result float64
 	switch operation {
-	case "add":
+	case "incoming":
 		result = x + y
-	case "subtract":
+	case "outgoing":
 		result = x - y
-	case "multiply":
-		result = x * y
-	case "divide":
-		if y == 0 {
-			return mcp.NewToolResultError("division by zero"), nil
-		}
-		result = x / y
 	default:
 		return mcp.NewToolResultError(fmt.Sprintf("unknown operation: %s", operation)), nil
 	}
