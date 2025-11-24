@@ -1,5 +1,8 @@
 <<<<<<< HEAD
 ![Example Usage](./assets/example.png)
+=======
+# Netmon-mcp (Go + eBPF + Model Context Protocol)
+>>>>>>> d3bdb573cadffd41118cbaba3f1e2d80adf34e0a
 
 A proof-of-concept to demonstrate the combinination of the 
 ergonomic UI of AI agents with the power of the Linux kernel! 
