@@ -1,4 +1,4 @@
-# MCP Test Server (Go + eBPF + Model Context Protocol)
+# Netmon-mcp (Go + eBPF + Model Context Protocol)
 
 This project implements a **Model Context Protocol (MCP)** server written in Go, exposing an MCP tool capable of monitoring **incoming network traffic using eBPF**.  
 The server currently works **only on Linux distributions** with kernel support for XDP/eBPF and must be run **with sudo privileges**.
