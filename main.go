@@ -12,7 +12,7 @@ import (
 	"github.com/mark3labs/mcp-go/mcp"
 	"github.com/mark3labs/mcp-go/server"
 
-	"mcp-test/netmon"
+	"netmon-mcp/netmon"
 )
 
 //go:generate go tool bpf2go -tags linux -go-package netmon -output-dir netmon/ netmon netmon/netmon.c -- -I./netmon/include
@@ -34,11 +34,9 @@ func main() {
 		mcp.WithString("network_operation",
 			mcp.Required(),
 			mcp.Enum("incoming", "outgoing"),
-			mcp.Description(
-				`The incoming operation measures the number of packets 
+			mcp.Description(`The incoming operation measures the number of packets 
 				received per second (in the timespan of 5 seconds). 
-				The outgoing operation checks for any new TCP connections.`
-			),
+				The outgoing operation checks for any new TCP connections.`),
 		),
 	)
 

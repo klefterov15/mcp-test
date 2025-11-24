@@ -1,4 +1,4 @@
-module mcp-test
+module netmon-mcp
 
 go 1.25.4
 
