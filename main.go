@@ -36,7 +36,7 @@ func main() {
 			mcp.Required(),
 			mcp.Enum("incoming", "outgoing"),
 			mcp.Description(`The incoming operation measures the number of packets 
-				received per second (in the timespan of 5 seconds). 
+				received per second. 
 				The outgoing operation checks for any new TCP connections.`),
 		),
 		mcp.WithString("interface",
